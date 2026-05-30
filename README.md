@@ -84,5 +84,5 @@
 ### 1. Клонування репозиторію
 
 ```bash
-git clone https://github.com/your-username/smart-home-dashboard.git
+git clone (https://github.com/Elppasso/SmartHome_with_IoT_technology.git)
 cd smart-home-dashboard
