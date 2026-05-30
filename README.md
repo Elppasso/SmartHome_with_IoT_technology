@@ -1,13 +1,12 @@
 # SmartHome_with_IoT_technology
-Курсовий проєкт АКІТР-25-1
-# 🏠 Smart Home Dashboard
-
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.3.2-black?logo=flask)](https://flask.palletsprojects.com/)
 [![Azure SQL](https://img.shields.io/badge/Azure%20SQL-Database-0078D4?logo=microsoftazure)](https://azure.microsoft.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.1.3-7952B3?logo=bootstrap)](https://getbootstrap.com/)
 [![Chart.js](https://img.shields.io/badge/Chart.js-4.4-FF6384?logo=chart.js)](https://www.chartjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+Курсовий проєкт АКІТР-25-1
 
 ## 📌 Зміст
 
