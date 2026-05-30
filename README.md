@@ -34,7 +34,6 @@ SmartHome_with_IoT_technology/
 ├── check_database.py
 ├── requirements.txt
 ├── .env
-├── .env.example
 ├── static/
 │   ├── css/
 │   │   └── style.css
@@ -65,7 +64,7 @@ SmartHome_with_IoT_technology/
 
 ### 1. Клонувати репозиторій
 ```bash
-git clone https://github.com/your-username/smart-home-coursework.git
+git clone https://github.com/Elppasso/SmartHome_with_IoT_technology
 cd smart-home-coursework
 ```
 
