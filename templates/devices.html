@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Керування пристроями - Розумний будинок</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .refresh-btn:hover { transform: none; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">🏠 Розумний будинок</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">📊 Дашборд</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/devices">🔧 Пристрої</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sensors">📈 Сенсори</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/automation">⚙️ Автоматизація</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/events">📋 Події</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <h2><i class="fas fa-microchip me-2"></i> Керування інфраструктурою</h2>
+            <div>
+                <button class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#addHomeModal"><i class="fas fa-home"></i> Додати будинок</button>
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addRoomModal"><i class="fas fa-door-open"></i> Додати кімнату</button>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white"><i class="fas fa-building"></i> Будинки</div>
+                    <div class="card-body p-2" id="homes-list" style="max-height: 500px; overflow-y: auto;"><div class="text-center p-3">Завантаження...</div></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white"><i class="fas fa-door-closed"></i> Кімнати</div>
+                    <div class="card-body p-2" id="rooms-list" style="max-height: 500px; overflow-y: auto;"><div class="text-muted text-center p-3">Виберіть будинок</div></div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-info text-white"><i class="fas fa-microchip"></i> Пристрої</div>
+                    <div class="card-body p-2" id="devices-list" style="max-height: 350px; overflow-y: auto;"><div class="text-muted text-center p-3">Виберіть кімнату</div></div>
+                </div>
+                <div class="card shadow-sm mt-3">
+                    <div class="card-header bg-warning"><i class="fas fa-plus-circle"></i> Додати пристрій</div>
+                    <div class="card-body">
+                        <input type="text" id="device-name" class="form-control mb-2" placeholder="Назва пристрою">
+                        <select id="sensor-type" class="form-select mb-2">
+                            <option value="">Без сенсора</option>
+                            <option value="Temperature">🌡️ Температура</option>
+                            <option value="Humidity">💧 Вологість</option>
+                            <option value="Motion">🏃 Рух</option>
+                            <option value="WaterLeak">💦 Витік води</option>
+                            <option value="PowerMeter">⚡ Енергія</option>
+                            <option value="Contact">🚪 Контакт</option>
+                            <option value="Light">💡 Освітлення</option>
+                            <option value="AirQuality">🌬️ Якість повітря</option>
+                        </select>
+                        <select id="device-status" class="form-select mb-2">
+                            <option value="1">🟢 Увімкнено</option>
+                            <option value="0">🔴 Вимкнено</option>
+                        </select>
+                        <button class="btn btn-success w-100" onclick="addDevice()"><i class="fas fa-save"></i> Додати пристрій</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальні вікна -->
+    <div class="modal fade" id="addHomeModal" tabindex="-1">
+        <div class="modal-dialog"><div class="modal-content"><div class="modal-header bg-primary text-white"><h5 class="modal-title"><i class="fas fa-home"></i> Новий будинок</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><label class="form-label">Адреса</label><input type="text" id="newHomeAddress" class="form-control" placeholder="м. Київ, вул. Хрещатик, 22"></div><div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button><button class="btn btn-primary" onclick="createHome()">Створити</button></div></div></div>
+    </div>
+    <div class="modal fade" id="addRoomModal" tabindex="-1">
+        <div class="modal-dialog"><div class="modal-content"><div class="modal-header bg-success text-white"><h5 class="modal-title"><i class="fas fa-door-open"></i> Нова кімната</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><label class="form-label">Виберіть будинок</label><select id="roomHomeSelect" class="form-select mb-3"></select><label class="form-label">Назва кімнати</label><input type="text" id="newRoomName" class="form-control" placeholder="Вітальня, Кухня..."></div><div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button><button class="btn btn-success" onclick="createRoom()">Створити</button></div></div></div>
+    </div>
+
+    <footer class="text-center text-muted mt-4 mb-3 py-2"><hr><small>Розумний будинок — курсова робота</small></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/devices.js"></script>
+</body>
+</html>

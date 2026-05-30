@@ -1,0 +1,187 @@
+/* static/css/style.css */
+:root {
+    --bg-body: #f4f6f9;
+    --primary: #0d6efd;
+    --success: #198754;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #0dcaf0;
+    --dark: #212529;
+    --light-gray: #e9ecef;
+    --text-muted: #6c757d;
+    --card-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+    --hover-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-body);
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Навігація (спільна) */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.nav-link {
+    font-weight: 500;
+    margin: 0 4px;
+    border-radius: 30px;
+    transition: 0.2s;
+}
+.nav-link:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Картки загальні */
+.card {
+    border-radius: 20px;
+    border: none;
+    box-shadow: var(--card-shadow);
+    background: white;
+}
+.card-header {
+    border-radius: 20px 20px 0 0 !important;
+    font-weight: 600;
+}
+
+/* Кнопки */
+.btn-create {
+    background: var(--success);
+    color: white;
+    border-radius: 40px;
+    padding: 8px 20px;
+    transition: 0.2s;
+}
+.btn-create:hover {
+    background: #218838;
+}
+
+/* Статуси пристроїв */
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.status-on {
+    background: #d4edda;
+    color: #155724;
+}
+.status-off {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Бейджі сенсорів */
+.sensor-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 30px;
+    font-size: 10px;
+    margin-top: 6px;
+}
+.sensor-temperature { background: #f8d7da; color: #721c24; }
+.sensor-humidity { background: #cfe2ff; color: #004085; }
+.sensor-motion { background: #fff3cd; color: #856404; }
+.sensor-water { background: #d1e7dd; color: #0f5132; }
+.sensor-power { background: #d1e7dd; color: #0f5132; }
+.sensor-contact { background: #f5c6cb; color: #721c24; }
+.sensor-light { background: #ffecb3; color: #856404; }
+.sensor-air { background: #b8dff0; color: #0c5460; }
+
+/* Індикатор оновлення */
+.refresh-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #28a745;
+    margin-right: 6px;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0% { opacity: 0.4; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Стилі для дерева навігації (devices) */
+.sidebar-menu {
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+}
+.sidebar-menu:hover {
+    background-color: var(--light-gray);
+    transform: translateX(4px);
+}
+.sidebar-menu.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Картки пристроїв */
+.device-card {
+    transition: 0.2s;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    background: white;
+}
+.device-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+/* Кнопки дій */
+.fa-trash-alt, .fa-edit {
+    cursor: pointer;
+    transition: 0.1s;
+}
+.fa-trash-alt:hover { color: var(--danger); }
+
+/* Футер */
+.footer-note {
+    font-size: 0.75rem;
+    color: #8a99b4;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 20px;
+}
+
+/* Модальне вікно (спільне) */
+.modal-content {
+    border-radius: 28px;
+    border: none;
+}
+.modal-header {
+    border-bottom: none;
+    background: #f8fafd;
+    border-radius: 28px 28px 0 0;
+}
+
+/* Toast повідомлення (спільне) */
+.toast-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 250px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: white;
+    border-left: 4px solid;
+}
+.toast-success { border-left-color: var(--success); }
+.toast-danger { border-left-color: var(--danger); }
+.toast-warning { border-left-color: var(--warning); }
